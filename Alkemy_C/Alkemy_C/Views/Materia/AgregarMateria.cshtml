@@ -1,0 +1,63 @@
+﻿@model Alkemy_C.Models.Materia.AgregarMateriaImportModel
+
+@{
+    ViewBag.Title = "AgregarMateria";
+}
+
+
+
+
+    <div class="feedAgregarUsuario">
+        <form class="agregarUsuario__container" action="@Url.Content("~/Materia/AgregarMateria")" method="post">
+            <div>
+                <h1>Agregar Materia</h1>
+            </div>
+            <div class="inputGroup">
+                <input type="text" autocomplete="off" name="name" placeholder="Nombre..." value="" />
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+            <div class="inputGroup">
+                <input type="text" autocomplete="off" name="places" placeholder="Cant. Cupos..." value="" />
+                @Html.ValidationMessageFor(model => model.places, "", new { @class = "text-danger" })
+            </div>
+
+
+
+            <div class="inputGroup">
+                @Html.DropDownListFor(x => Model.Teacher, new SelectList(Model.Teachers.Select(c => new { IdTeacher = c.Id, FullName = c.name + " " + c.last_name + " " + c.Ci }), "IdTeacher", "FullName"), htmlAttributes: new { @class = "form-control", id = "Teachers" })
+                @Html.ValidationMessageFor(x => x.Teacher, "", new { @class = "text-danger" })
+            </div>
+            <dl class="row">
+                @foreach (var item in Model.Schedules.ToList())
+                {
+
+                    <dt class="col-sm-3">
+                        <input class="form-check-input" type="checkbox" name="SelectedSchedules" id="isAlumn" value="@item.Id" />
+
+                    </dt>
+                    <dd class="col-sm-9">
+                        <label class="form-check-label" for="isAlumn">
+                            @item.day @item.hr_start.Hour PM - @item.hr_end.Hour PM
+                        </label>
+                    </dd>
+                }
+                @Html.ValidationMessageFor(model => model.SelectedSchedules, "", new { @class = "text-danger" })
+            </dl>
+            <div>
+                <input class="btnForm" type="submit" value="Agregar" />
+            </div>
+            <div>
+                @Html.ActionLink("Volver", "Materias", new { area = "" }, new { @class = "btnForm" })
+            </div>
+            @ViewBag.agregarMateriaStatus
+        </form>
+
+    </div>
+<div class="FeedBackground">
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

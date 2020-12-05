@@ -1,0 +1,81 @@
+﻿@model Alkemy_C.Models.Materia.listaMaterias
+@{
+    ViewBag.Title = "Materias";
+}
+
+<div class="Feed">
+    <div class="feed__Content">
+        <div class="feed__Content__header">
+            <h1 class="feed__Content__header--title">Materias</h1>
+            @if ((Alkemy_C.Models.EF_Models.Person)Session["Usuario"] is Alkemy_C.Models.EF_Models.Admin)
+            {
+   
+            @Html.ActionLink("Agregar", "AgregarMateria", new { area = "" }, new { @class = "btnDefault" })
+
+            
+            }
+
+        </div>
+        <div class="feed__Content__body">
+            
+            <table class="table table-hover ">
+                <tr class="head-blue">
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Cupos disp.
+                    </th>
+                    <th>
+                        Id
+                    </th>
+                    <th class="opcColumn">
+                        Opc
+                    </th>
+                </tr>
+                @foreach (var item in Model.Subjects.ToList())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.places)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td class="btnColumn">
+                            @if ((Alkemy_C.Models.EF_Models.Person)Session["Usuario"] is Alkemy_C.Models.EF_Models.Admin)
+                            {
+                                @Html.ActionLink("Editar", "EditarMateria", new { Id = item.Id })
+                                @Html.ActionLink("Eliminar", "EliminarMateria", new { Id = item.Id })
+
+                            }
+                            @Html.ActionLink("Ver mas", "MateriaDetails", new { Id = item.Id })
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="feed__Content__footer">
+            <p>
+                @ViewBag.eliminarMateriaStatus
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<div class="FeedBackground">
+
+</div>
+
+
+
+
+
+
+

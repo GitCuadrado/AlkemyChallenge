@@ -1,0 +1,85 @@
+﻿@model Alkemy_C.Models.Profesor.listaProfesores
+
+@{
+    ViewBag.Title = "Profesores";
+}
+
+
+
+<div class="Feed">
+    <div class="feed__Content">
+        <div class="feed__Content__header">
+            <h1 class="feed__Content__header--title">Profesores</h1>
+                @Html.ActionLink("Agregar", "CrearProfesor", new { area = "" }, new { @class = "btnDefault" })
+        </div>
+        <div class="feed__Content__body">
+
+            <table class="table">
+                <tr class="head-blue">
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Activo
+                    </th>
+                    <th>
+                        Ci
+                    </th>
+                    <th class="opcColumn">
+                        Opc
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Teachers.ToList())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.last_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.active)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ci)
+                        </td>
+                        <td class="btnColumn">
+                            @Html.ActionLink("Editar", "ModificarProfesor", new { id = item.Id }) |
+                            @Html.ActionLink("Materias...", "DetailsProfesor", new { id = item.Id }) |
+                            @Html.ActionLink("Eliminar", "EliminarProfesor", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="feed__Content__footer">
+            <p>
+                @ViewBag.eliminarMateriaStatus
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<div class="FeedBackground">
+
+</div>
+
+
+
+
+
+
+

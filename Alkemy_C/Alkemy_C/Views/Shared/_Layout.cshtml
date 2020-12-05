@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Alkemy Challengue</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-bar__logo">
+            <img class="nav-bar__logo--logoItem" src="~/Sources/logo.png" alt="Alkemy Logo" />
+        </div>
+        <div class="nav-bar__btn">
+            <div class="nav-bar__btn--item">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="nav-bar__items">
+            <ul class="nav-bar__items__list">
+
+                @if ((Alkemy_C.Models.EF_Models.Person)Session["Usuario"] != null)
+                {
+                    <li>@Html.ActionLink("HOME", "Index", "Home")</li>
+                    <li>@Html.ActionLink("MATERIAS", "Materias", "Materia")</li>
+                }
+                @if ((Alkemy_C.Models.EF_Models.Person)Session["Usuario"] is Alkemy_C.Models.EF_Models.Admin)
+                {
+                    <li>@Html.ActionLink("PROFESORES", "Profesores", "Profesor")</li>
+                }
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+    @RenderBody()
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+  
+
+
+        <script>
+            $( document ).ready(function() {
+                WebScript.init();
+            });
+        </script>
+
+
+
+</body>
+</html>

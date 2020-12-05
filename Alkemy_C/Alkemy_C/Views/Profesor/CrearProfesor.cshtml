@@ -1,0 +1,43 @@
+﻿@model Alkemy_C.Models.Profesor.CrearProfesorImportModel
+
+@{
+    ViewBag.Title = "CrearProfesor";
+}
+
+
+
+<div class="feedAgregarUsuario">
+    <form class="crearProfesor__container" action="@Url.Content("~/Profesor/CrearProfesor")" method="post">
+        <div>
+            <h1>Agregar Profesor</h1>
+        </div>
+        <div class="inputGroup">
+            <input type="text" autocomplete="off" name="ci" placeholder="ci..." value="" />
+            @Html.ValidationMessageFor(model => model.ci, "", new { @class = "text-danger" })
+        </div>
+        <div class="inputGroup">
+            <input type="text" autocomplete="off" name="name" placeholder="Nombre..." value="" />
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+        <div class="inputGroup">
+            <input type="text" autocomplete="off" name="last_name" placeholder="Apellido..." value="" />
+            @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <input class="btnForm" type="submit" value="Agregar" />
+        </div>
+        <div>
+            @Html.ActionLink("Volver", "Profesores", new { area = "" }, new { @class = "btnForm" })
+        </div>
+        @ViewBag.crearProfesorStatus
+    </form>
+
+</div>
+<div class="FeedBackground">
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@model Alkemy_C.Models.Ingreso.IngresoImportModel
+@{
+    ViewBag.Title = "Ingreso";
+}
+
+
+<div class="feedLogin">
+    <form class="feedLogin__container" action="@Url.Content("~/Ingreso/Ingreso")" method="post">
+        <div>
+            <h1>Log in</h1>
+        </div>
+        <div class="inputGroup">
+            <input type="text" autocomplete="off" name="User" placeholder="Usuario..." value="" />
+            @Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
+        </div>
+        <div class="inputGroup">
+            <input type="text" autocomplete="off" name="Password" placeholder="Contraseña..." value="" />
+            @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
+        </div>
+        <div class="checkboxGroup">
+            <div>
+                <input class="form-check-input" type="radio" name="isAlumn" id="isAlumn" value="true" checked />
+                <label class="form-check-label" for="isAlumn">
+                    Alumn
+                </label>
+            </div>
+            <div>
+                <input class="form-check-input" type="radio" name="isAlumn" id="isAlumn" value="false" />
+                <label class="form-check-label" for="isAlumn">
+                    Admin
+                </label>
+            </div>
+
+        </div>
+        <div>
+            <input class="btnForm" type="submit" name="Login" value="Log in" />
+        </div>
+        @ViewBag.errorLogin
+    </form>
+
+</div>
+<div class="FeedBackground">
+
+</div>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
